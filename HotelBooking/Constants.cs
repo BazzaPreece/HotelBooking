@@ -9,5 +9,11 @@
             public static string RoomType = "RoomType";
             public static string Booking = "Booking";
         }
+
+        public static partial class BookingDetails
+        {
+            public static TimeOnly BookInTime = TimeOnly.Parse("3:00 PM");
+            public static TimeOnly BookOutTime = TimeOnly.Parse("10:00 AM");
+        }
     }
 }
