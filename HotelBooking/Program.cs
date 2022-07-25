@@ -1,5 +1,6 @@
 using HotelBooking.Data;
 using HotelBooking.Migrations;
+using HotelBooking.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -20,6 +21,8 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory,  $"{ Assembly.GetExecutingAssembly().GetName().Name}.xml"));
 });
+
+builder.Services.AddScoped<IHotelRepository, HotelRepository>();
 
 var app = builder.Build();
 
