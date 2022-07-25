@@ -1,4 +1,5 @@
 ﻿using HotelBooking.Configuration;
+using HotelBooking.Extensions;
 using HotelBooking.Models;
 using Microsoft.EntityFrameworkCore;
 using static HotelBooking.Constants;
@@ -11,8 +12,10 @@ namespace HotelBooking.Data
         {
         }
 
-        public DbSet<Hotel> Hotels { get; set; }
         public DbSet<RoomType> RoomTypes { get; set; }
+        public DbSet<Hotel> Hotels { get; set; }        
+        public DbSet <HotelRoom> HotelRooms { get; set; }
+        public DbSet <Booking> Bookings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,6 +25,8 @@ namespace HotelBooking.Data
             modelBuilder.Entity<Booking>().ToTable(TableNames.Booking);
 
             modelBuilder.ApplyConfiguration(new RoomTypeConfiguration());
+
+            modelBuilder.Seed();
         }
     }
 }
