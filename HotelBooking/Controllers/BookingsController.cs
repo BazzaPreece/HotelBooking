@@ -37,6 +37,7 @@ namespace HotelBooking.Controllers
         // RISK: No checks for whether the booking is still available so race conditions could be easily hit
         // RISK: On inserting the booking, no handling of possible duplicate booking reference numbers (reference field
         // is set to be unique so could get failures here)
+        // RISK: No checks here that the number of people are within the rooms capacity
 
         /// <summary>
         /// Create hotel booking with room ID, dates and number of guests
