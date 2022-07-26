@@ -6,6 +6,7 @@ namespace HotelBooking.Repositories
     {
         Task<IEnumerable<Hotel>> SearchHotels(string searchString);
         Task<IEnumerable<HotelRoom>> SearchHotelRooms(int numberOfGuests, DateTime bookInTime, DateTime bookOutTime);
-        Task<HotelRoom> CreateBooking(HotelRoom hotelRoom);
+        Task<Booking> GetBookingWithReference(string reference);
+        Task<Booking> CreateBooking(int hotelRoomID, DateTime bookInDay, DateTime bookOutDay, int numberOfGuests);
     }
 }

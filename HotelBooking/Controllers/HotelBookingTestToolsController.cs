@@ -22,7 +22,7 @@ namespace HotelBooking.Controllers
         /// <summary>
         /// Delete existing test data and seed with fresh test data
         /// </summary>
-        /// <returns></returns>
+        /// <returns>No content</returns>
         [HttpPut]
         public async Task<IActionResult> ResetData()
         {
