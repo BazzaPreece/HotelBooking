@@ -22,9 +22,7 @@ builder.Services.AddSwaggerGen(c =>
     c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory,  $"{ Assembly.GetExecutingAssembly().GetName().Name}.xml"));
 });
 
-builder.Services
-    .AddScoped<IHotelRepository, HotelRepository>()
-    .AddScoped<IHotelRoomRepository, HotelRoomRepository>();
+builder.Services.AddScoped<IHotelBookingRepository, HotelBookingRepository>();
 
 var app = builder.Build();
 

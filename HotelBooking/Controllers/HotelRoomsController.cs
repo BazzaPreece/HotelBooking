@@ -9,9 +9,9 @@ namespace HotelBooking.Controllers
     [ApiController]
     public class HotelRoomsController : ControllerBase
     {
-        private readonly IHotelRoomRepository _repository;
+        private readonly IHotelBookingRepository _repository;
 
-        public HotelRoomsController(IHotelRoomRepository repository)
+        public HotelRoomsController(IHotelBookingRepository repository)
         {
             _repository = repository;
         }
@@ -31,7 +31,7 @@ namespace HotelBooking.Controllers
                                                                 string bookInDay, 
                                                                 string bookOutDay)
         {            
-            var hotelRooms = await _repository.Search(numberOfGuests, 
+            var hotelRooms = await _repository.SearchHotelRooms(numberOfGuests, 
                                                         DateOnly.Parse(bookInDay).ToDateTime(BookingDetails.BookInTime),
                                                         DateOnly.Parse(bookOutDay).ToDateTime(BookingDetails.BookOutTime));
 

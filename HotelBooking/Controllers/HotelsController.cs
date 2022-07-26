@@ -8,9 +8,9 @@ namespace HotelBooking.Controllers
     [ApiController]
     public class HotelsController : ControllerBase
     {
-        private readonly IHotelRepository _repository;
+        private readonly IHotelBookingRepository _repository;
 
-        public HotelsController(IHotelRepository repository)
+        public HotelsController(IHotelBookingRepository repository)
         {
             _repository = repository;
         }
@@ -23,7 +23,7 @@ namespace HotelBooking.Controllers
         [HttpGet("{searchString}")]
         public async Task<ActionResult<IEnumerable<Hotel>>> Search(string searchString)
         {
-            var hotels = await _repository.Search(searchString);
+            var hotels = await _repository.SearchHotels(searchString);
 
             if (hotels == null || !hotels.Any())
             {

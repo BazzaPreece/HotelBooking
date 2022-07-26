@@ -5,28 +5,36 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HotelBooking.Repositories
 {
-    public class HotelRoomRepository : IHotelRoomRepository
+    public class HotelBookingRepository : IHotelBookingRepository
     {
         private readonly HotelBookingContext _context;
 
-        public HotelRoomRepository(HotelBookingContext context)
+        public HotelBookingRepository(HotelBookingContext context)
         {
             _context = context;
         }
 
-        // TODO: Implement booking creation
+        public async Task<IEnumerable<Hotel>> SearchHotels(string searchString)
+        {
+            if (string.IsNullOrEmpty(searchString))
+                return new List<Hotel>();
+
+            return _context.Hotels
+                           .Where(s => s.Name.Contains(searchString));
+        }
+
         public Task<HotelRoom> CreateBooking(HotelRoom hotelRoom)
         {
             throw new NotImplementedException();
         }
-        
-        public async Task<IEnumerable<HotelRoom>> Search(int numberOfGuests, DateTime bookInTime, DateTime bookOutTime)
+
+        public async Task<IEnumerable<HotelRoom>> SearchHotelRooms(int numberOfGuests, DateTime bookInTime, DateTime bookOutTime)
         {
             return await _context.HotelRooms.FromSqlRaw(
                 $"EXECUTE HotelRoomSearch " +
                 $"@numberOfPeople = {numberOfGuests}, " +
                 $"@bookIn = '{bookInTime.ToSQLFormat()}', " +
-                $"@bookOut = '{bookOutTime.ToSQLFormat()}'").ToListAsync();                        
+                $"@bookOut = '{bookOutTime.ToSQLFormat()}'").ToListAsync();
         }
     }
 }
