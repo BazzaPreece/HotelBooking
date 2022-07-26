@@ -16,14 +16,17 @@ namespace HotelBooking.Controllers
             _repository = repository;
         }
 
+        // RISK: Date string not set in the correct format
+        // RISK: Dates could be entered the wrong way round with the book in date after the book out date
+
         /// <summary>
         /// Search for rooms with number of people, booking in and booking out times
         /// </summary>
-        /// <param name="numberOfGuests"></param>
-        /// <param name="bookInDay"></param>
-        /// <param name="bookOutDay"></param>
-        /// <returns></returns>
-        [HttpGet("{numberOfGuests}/{bookInDay}/{bookOutDay}")]
+        /// <param name="numberOfGuests">Maximum number of guests: 2</param>
+        /// <param name="bookInDay">Date format yyyy-MM-dd required</param>
+        /// <param name="bookOutDay">Date format yyyy-MM-dd required</param>
+        /// <returns>List of available hotel rooms available for the whole duration of the stay for the specified number of people</returns>
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<HotelRoom>>> Search(int numberOfGuests, 
                                                                 string bookInDay, 
                                                                 string bookOutDay)

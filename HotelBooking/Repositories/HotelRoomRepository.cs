@@ -1,5 +1,7 @@
 ﻿using HotelBooking.Data;
+using HotelBooking.Extensions;
 using HotelBooking.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace HotelBooking.Repositories
 {
@@ -17,11 +19,14 @@ namespace HotelBooking.Repositories
         {
             throw new NotImplementedException();
         }
-
-        // TODO: Implement search
+        
         public async Task<IEnumerable<HotelRoom>> Search(int numberOfGuests, DateTime bookInTime, DateTime bookOutTime)
         {
-            throw new NotImplementedException();
+            return await _context.HotelRooms.FromSqlRaw(
+                $"EXECUTE HotelRoomSearch " +
+                $"@numberOfPeople = {numberOfGuests}, " +
+                $"@bookIn = '{bookInTime.ToSQLFormat()}', " +
+                $"@bookOut = '{bookOutTime.ToSQLFormat()}'").ToListAsync();                        
         }
     }
 }
