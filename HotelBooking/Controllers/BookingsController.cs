@@ -35,7 +35,8 @@ namespace HotelBooking.Controllers
         // RISK: Date string not set in the correct format
         // RISK: Dates could be entered the wrong way round with the book in date after the book out date
         // RISK: No checks for whether the booking is still available so race conditions could be easily hit
-        // RISK: On inserting the booking, no handling of possible duplicate booking reference numbers
+        // RISK: On inserting the booking, no handling of possible duplicate booking reference numbers (reference field
+        // is set to be unique so could get failures here)
 
         /// <summary>
         /// Create hotel booking with room ID, dates and number of guests

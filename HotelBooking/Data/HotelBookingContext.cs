@@ -22,7 +22,10 @@ namespace HotelBooking.Data
             modelBuilder.Entity<Hotel>().ToTable(TableNames.Hotel);
             modelBuilder.Entity<HotelRoom>().ToTable(TableNames.HotelRoom);
             modelBuilder.Entity<RoomType>().ToTable(TableNames.RoomType);
-            modelBuilder.Entity<Booking>().ToTable(TableNames.Booking);
+            modelBuilder.Entity<Booking>()
+                .ToTable(TableNames.Booking)
+                .HasIndex(b => b.Reference)
+                .IsUnique();           
 
             modelBuilder.ApplyConfiguration(new RoomTypeConfiguration());
 
